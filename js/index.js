@@ -27,7 +27,7 @@ class Complex {
 
 
 //mand returns [0, 255] to show if data falls in 
-//Mandelbrot set
+//Mandelbrot 
 function mand(z0, max) {
   let z = z0;
   for (let t = 0; t < max; t++) {
@@ -40,13 +40,11 @@ function mand(z0, max) {
 }
 
 function main(xc, yc, size) {
-  console.log("Starting main()...");
+  $('#mandelbrot').hide();
   let n = 512;
   let max = 255;
-
   var canvas = document.getElementById('mandelbrot');
   var ctx = canvas.getContext('2d');
-
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       let x0 = xc - size / 2 + size * i / n;
@@ -58,7 +56,11 @@ function main(xc, yc, size) {
       ctx.fillRect(n - i, n - j, 1, 1);
     }
   }
-  console.log("main() complete...");
+  $('#loading').hide();
+  $('#mandelbrot').show();
 }
 
-main(-0.5, 0, 2.0);
+$(document).ready(function() {
+    $('#loading').show();
+    main(-0.5, 0, 2.0);
+});
